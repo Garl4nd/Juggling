@@ -1,5 +1,6 @@
 # TODO: initial hands interface
 # TODO: 1-1 padá
+# TODO: Zřejme je nějaká chyba u nulových hodů.
 import itertools as it
 import random
 import matplotlib.pyplot as plt
