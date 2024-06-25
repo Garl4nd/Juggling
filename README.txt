@@ -9,3 +9,4 @@ you can show them by toggling off "hide zeros". By default, the colors of the ar
 off "show loops". You can toggle on "reverse throws" to show throws from the outside in, instead of inside out as in the regular cascade. Happy/sad/meh toggle changes the face of the juggler.
 
 #TODO: fix misaligned buttons
+#TODO: Fix starting position by going over the static diagram (take the time and hand of the first occurence for each ball)
