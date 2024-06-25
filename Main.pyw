@@ -251,8 +251,8 @@ def draw_diagram(fig,ax,max_height,balls,figname="juggle_state_graph.png",by_loo
             loop=False
             #found=False
             for annotation,text_obj in boxes.items():
-                extent=text_obj.get_window_extent().inverse_transformed(ax.transData)
-                #extent=box.text_obj.get_tightbbox(renderer).inverse_transformed(ax.transData)
+                extent=text_obj.get_window_extent().transformed(ax.transData.inverted())
+                #extent=box.text_obj.get_tightbbox(renderer).transformed(ax.transData.inverted())
                 w=extent.x1-extent.x0
                 h=extent.y1-extent.y0
                 if extent.x0-w/2<x<extent.x1+w/2 and extent.y0-h/2<y<extent.y1+h/2:
@@ -406,7 +406,7 @@ def DrawPattern(pattern,ax=None,xstart=0.0,ystart=0.0,height=1,width=1,ncirc=12,
         #circtxt.append(txt)
         artists.append(txt)
         plt.gcf().canvas.draw()
-        bb=txt.get_window_extent().inverse_transformed(ax.transData)
+        bb=txt.get_window_extent().transformed(ax.transData.inverted())
 
         y0=bb.y1
         x0=xstart+xpos
@@ -439,7 +439,8 @@ def interface(balls=3,max_height=5,save=False):
         fig.canvas.draw()
     ax2=ax.twinx()
     mng = plt.get_current_fig_manager()
-    mng.window.state('zoomed')
+    #mng.window.state('zoomed')
+        
     ax.set_xlim(-1.5,1.5)
     ax.set_ylim(-1.5,1.5)
     arrow_x=-0.9
@@ -466,15 +467,15 @@ def interface(balls=3,max_height=5,save=False):
 
     
     refr_text=ax.text(0.5,1.7,"Generate",fontsize=15,bbox=dict(facecolor='none', edgecolor='black', boxstyle='round,pad=1'),ha="center",va="center")
-    refr_extent=refr_text.get_window_extent().inverse_transformed(ax.transData)
+    refr_extent=refr_text.get_window_extent().transformed(ax.transData.inverted())
     loop_text=ax.text(-1.5,1.85,"Show loops",fontsize=10,color="red",bbox=dict(facecolor='none', edgecolor='black', boxstyle='round,pad=1'),ha="center",va="center")
-    looptxt_extent=loop_text.get_window_extent().inverse_transformed(ax.transData)
+    looptxt_extent=loop_text.get_window_extent().transformed(ax.transData.inverted())
     zero_text=ax.text(-1.5,1.65,"Hide zeros",fontsize=10,color="red",bbox=dict(facecolor='none', edgecolor='black', boxstyle='round,pad=1'),ha="center",va="center")
-    zerotxt_extent=zero_text.get_window_extent().inverse_transformed(ax.transData)
+    zerotxt_extent=zero_text.get_window_extent().transformed(ax.transData.inverted())
     inout_text=ax.text(-1.25,1.85,"Reverse throws",fontsize=10,color="black",bbox=dict(facecolor='none', edgecolor='black', boxstyle='round'),ha="center",va="center")
-    inout_extent=inout_text.get_window_extent().inverse_transformed(ax.transData)
+    inout_extent=inout_text.get_window_extent().transformed(ax.transData.inverted())
     happy_state_text=ax.text(-1.25,1.65,"happy",fontsize=10,color="black",bbox=dict(facecolor='none', edgecolor='black', boxstyle='round'),ha="center",va="center")
-    happy_state_extent=happy_state_text.get_window_extent().inverse_transformed(ax.transData)
+    happy_state_extent=happy_state_text.get_window_extent().transformed(ax.transData.inverted())
 
     objs={"bup":(arrow_x,arrow_x+arrow_w,arrow_y,arrow_y+arrow_h),"bdown":(arrow_x,arrow_x+arrow_w,arrow_y-arrow_h/3-arrow_h,arrow_y-arrow_h/3),
     "hup":(harrow_x,harrow_x+harrow_w,harrow_y,harrow_y+harrow_h),"hdown":(harrow_x,harrow_x+harrow_w,harrow_y-harrow_h/3-harrow_h,harrow_y-harrow_h/3),

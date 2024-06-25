@@ -189,7 +189,7 @@ def anim(balls,pattern,t0s=None,hands=None,delay=0,hand_shift=3,happy_state=1):
         elif event.key=="left":
             incr=max(0,incr-1)
     ax.set_aspect('equal')
-    FuncAnimation(fig,update,init_func=init,blit=True,interval=1,repeat=True,save_count=frames,frames=frames)
+    anim = FuncAnimation(fig,update,init_func=init,blit=True,interval=1,repeat=True,save_count=frames,frames=frames)
     fig.canvas.mpl_connect('button_press_event', onClick)
     fig.canvas.mpl_connect('key_press_event', onPress)
 
